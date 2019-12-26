@@ -9,8 +9,6 @@ phases:
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
   build:
-    runtime-versions:
-      docker: 18
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
