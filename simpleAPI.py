@@ -13,7 +13,7 @@ from bottle import Bottle, HTTPResponse  # WebServer
 
 VERSION = '0.0.1'     # API Version
 BOTTLEIP = '0.0.0.0'  # The IP that Bottle will listen on to serve the API
-BOTTLEPORT = '80'   # The TCP port that bottle will use to serve the API
+BOTTLEPORT = '8080'   # The TCP port that bottle will use to serve the API
 
 
 # Setup the Bottle WebServer Instance:

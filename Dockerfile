@@ -6,7 +6,7 @@
 ############################################################
 
 # Set the base image
-FROM alpine:latest
+FROM python:3.7-slim-buster
 
 # File Author / Maintainer
 MAINTAINER "Rich Nason" <rnason@awsdocs.com>
@@ -20,8 +20,8 @@ MAINTAINER "Rich Nason" <rnason@awsdocs.com>
 #*******************  UPDATES & PRE-REQS  *************************
 ###################################################################
 
-# Install dependencies
-RUN apk update && apk add curl python py-pip jq vim
+# Install dependencigit tag -a v1.4 -m "my version 1.4"es
+RUN apt-get update 
 
 # Install bottle if running the python file directly
 RUN pip install bottle
@@ -40,12 +40,13 @@ RUN pip install bottle
 #******************  ADD REQUIRED APP FILES  **********************
 ###################################################################
 
-ADD simpleAPI.py /usr/local/bin
+WORKDIR /src
+ADD simpleAPI.py /src
 
 ###################################################################
 #*************  CMD & EXPOSE APPLICATION PORTS  *******************
 ###################################################################
 
-CMD [ "sh", "-c", "python /root/api.py" ]
 
-EXPOSE 80
+CMD [ "python",  "simpleAPI.py" ]
+EXPOSE 8080
