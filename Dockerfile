@@ -1,15 +1,15 @@
 ############################################################
 # Dockerfile to build an example API endpoint
-# Based on: alpine:latest
+# Based on: python:3.7-slim-buster
 # DATE: 09/28/2017
-# COPYRIGHT: awsdocs.com
+
 ############################################################
 
 # Set the base image
 FROM python:3.7-slim-buster
 
 # File Author / Maintainer
-MAINTAINER "Rich Nason" <rnason@awsdocs.com>
+MAINTAINER "Ben Holloway" <budlight@gmail.com>
 
 ###################################################################
 #***************  OVERRIDE ENABLED ENV VARIABLES  *****************
@@ -20,10 +20,8 @@ MAINTAINER "Rich Nason" <rnason@awsdocs.com>
 #*******************  UPDATES & PRE-REQS  *************************
 ###################################################################
 
-# Install dependencigit tag -a v1.4 -m "my version 1.4"es
 RUN apt-get update 
 
-# Install bottle if running the python file directly
 RUN pip install bottle
 
 ###################################################################

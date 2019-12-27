@@ -8,14 +8,21 @@ phases:
     commands:
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+
+      - REPOSITORY_URI=041745228065.dkr.ecr.us-west-2.amazonaws.com/test
+
   build:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...          
       - docker build -t test:latest .
-      - docker tag test:latest 041745228065.dkr.ecr.us-west-2.amazonaws.com/test:latest    
+      - docker tag test:latest $REPOSITORY_URI:latest    
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 041745228065.dkr.ecr.us-west-2.amazonaws.com/test:latest
+      - docker push $REPOSITORY_URI:latest
+      - echo Writing definitions file...
+      - printf '[{"name":"project-container","imageUri":"%s"}]' $REPOSITORY_URI:latest > taskdefinition.json
+artifacts:
+    files: taskdefinition.json
